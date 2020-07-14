@@ -38,17 +38,19 @@
 }
 .main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: large;
   padding: 2rem;
+  width: 100%;
 }
 .card {
-  text-align: left;
-  border:1px solid #282c34;
+  margin: 2rem;
+  padding: 1rem;
+}
+.alert {
   margin: 1rem;
   padding: 1rem;
 }
-.weather{
-  padding: 0.5rem;
-}
+
