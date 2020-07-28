@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Cities from "./cityCard";
-import { v4 as uuidv4 } from "uuid";
 
 const KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
@@ -11,15 +10,10 @@ function Search() {
   const [clickedCount, setClickedCount] = useState(0);
   const [cityIsFound, setCityIsFound] = useState(true);
   const [citiesList, setCitiesList] = useState([]);
-  const handleDelete = id => {
-    const  filteredList = citiesList.filter((city) => city.id !== id)
+  const handleDelete = (id) => {
+    const filteredList = citiesList.filter((city) => city.id !== id);
     setCitiesList(filteredList);
-    localStorage.setItem(
-        "citiesList",
-        JSON.stringify(filteredList)
-      );
-      console.log("here")
-
+    localStorage.setItem("citiesList", JSON.stringify(filteredList));
   };
   const fetchCity = () => {
     setLoading(true);
@@ -43,7 +37,7 @@ function Search() {
         setCityName("");
         setLoading(false);
         let dataCity = {
-          id: uuidv4(),
+          id: data.id,
           name: `${data.name}`,
           country: `${data.sys.country}`,
           weather: `${data.weather[0].main}`,
@@ -128,13 +122,13 @@ function Input({ cityName, setCityName }) {
     />
   );
 }
-function Button({ clickedCount, setClickedCount,cityName }) {
+function Button({ clickedCount, setClickedCount, cityName }) {
   return (
     <button
       className="btn btn-secondary"
       type="button"
       onClick={() => setClickedCount(clickedCount + 1)}
-      disabled={cityName.length<1}
+      disabled={cityName.length < 1}
     >
       <i className="fa fa-search"></i>
     </button>
